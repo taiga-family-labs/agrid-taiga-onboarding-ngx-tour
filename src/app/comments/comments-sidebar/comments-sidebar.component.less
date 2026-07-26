@@ -1,0 +1,67 @@
+:host {
+    display: block;
+    min-inline-size: 0;
+    block-size: 100%;
+}
+
+.sidebar {
+    position: relative;
+    display: grid;
+    grid-template-rows: auto auto auto 1fr auto;
+    min-inline-size: 0;
+    block-size: 100%;
+    border-inline-start: 1px solid #dfe3e8;
+    background: #fff;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.25rem 0;
+
+    h2 {
+        margin: 0;
+        font-size: 1.75rem;
+    }
+}
+
+.proposal-summary {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1.25rem;
+}
+
+.avatar {
+    display: grid;
+    place-items: center;
+    inline-size: 2.5rem;
+    block-size: 2.5rem;
+    border-radius: 50%;
+    background: #dce9ff;
+    color: #2764d8;
+}
+
+tui-segmented {
+    inline-size: max-content;
+    margin: 0 1.25rem;
+}
+
+.comments-empty {
+    display: grid;
+    place-content: center;
+    justify-items: center;
+    color: #767d86;
+}
+
+.empty-icon {
+    display: grid;
+    place-items: center;
+    inline-size: 4.5rem;
+    block-size: 4.5rem;
+    border-radius: 50%;
+    background: #edf3fb;
+    color: #4584e6;
+    font-size: 2rem;
+}
