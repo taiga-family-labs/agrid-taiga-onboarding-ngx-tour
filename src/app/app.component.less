@@ -1,0 +1,57 @@
+:host {
+    display: block;
+    min-block-size: 100vh;
+}
+
+.page {
+    min-block-size: 100vh;
+    padding: 1.5rem;
+}
+
+.toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-block-end: 1rem;
+}
+
+.workspace {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    min-block-size: calc(100vh - 7.5rem);
+    overflow: hidden;
+    border: 1px solid #dfe3e8;
+    border-radius: 1rem;
+    background: #fff;
+    transition: grid-template-columns 220ms ease;
+
+    &.sidebar-open {
+        grid-template-columns: minmax(0, 1fr) 40rem;
+    }
+}
+
+.grid-shell {
+    min-inline-size: 0;
+}
+
+.grid-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-block-size: 3rem;
+    padding: 0 1rem;
+    border-block-end: 1px solid #e5e7eb;
+    color: #6b7280;
+}
+
+.grid {
+    inline-size: 100%;
+    block-size: calc(100vh - 10.6rem);
+}
+
+@media (max-width: 1200px) {
+    .workspace.sidebar-open {
+        grid-template-columns: minmax(0, 1fr) 34rem;
+    }
+}

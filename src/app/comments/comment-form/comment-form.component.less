@@ -1,0 +1,71 @@
+:host {
+    display: block;
+}
+
+.comment-form {
+    display: grid;
+    gap: 0.75rem;
+    padding: 1rem 1.25rem;
+    border-block-start: 1px solid #e5e7eb;
+}
+
+.textarea-label {
+    display: grid;
+    gap: 0.4rem;
+    color: #666d76;
+
+    textarea {
+        min-block-size: 6.5rem;
+        resize: vertical;
+        padding: 0.75rem;
+        border: 1px solid #d5d9df;
+        border-radius: 0.75rem;
+        font: inherit;
+    }
+
+    > span {
+        justify-self: end;
+        font-size: 0.75rem;
+    }
+}
+
+.form-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.checkbox-anchor {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-inline-size: max-content;
+    padding: 0.45rem;
+    border-radius: 0.6rem;
+    color: #555c65;
+    white-space: nowrap;
+
+    tui-icon {
+        inline-size: 1rem;
+        block-size: 1rem;
+        color: #a9aeb5;
+    }
+}
+
+.buttons {
+    display: flex;
+    flex: 0 0 auto;
+    gap: 0.5rem;
+}
+
+@media (max-width: 1200px) {
+    .form-actions {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .buttons {
+        justify-content: flex-end;
+    }
+}

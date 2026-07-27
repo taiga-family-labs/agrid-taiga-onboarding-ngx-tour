@@ -1,0 +1,28 @@
+import {ProposalDto} from '../proposal.dto';
+
+export const PROPOSALS: ProposalDto[] = [
+    {id: 1, employeeFullName: 'Агафонова Анна Арсентьевна', department: 'Продуктовая разработка', currentCr: 1.08, recommendedCr: 1.14, status: 'Есть отклонения', comments: 3},
+    {id: 2, employeeFullName: 'Арсеньев Николай Геннадьевич', department: 'Финансы', currentCr: 0.96, recommendedCr: 1.02, status: 'На согласовании', comments: 1},
+    {id: 3, employeeFullName: 'Володин Олег Петрович', department: 'Риски', currentCr: 1.12, recommendedCr: 1.12, status: 'Без отклонений', comments: 0},
+    {id: 4, employeeFullName: 'Воробьева Татьяна Борисовна', department: 'HR Tech', currentCr: 1.01, recommendedCr: 1.09, status: 'Есть отклонения', comments: 2},
+    {id: 5, employeeFullName: 'Дюран Александр Алексеевич', department: 'Платформа', currentCr: 0.91, recommendedCr: 0.98, status: 'Черновик', comments: 0},
+    {id: 6, employeeFullName: 'Герасимов Андрей Львович', department: 'Безопасность', currentCr: 1.04, recommendedCr: 1.07, status: 'На согласовании', comments: 4},
+    {id: 7, employeeFullName: 'Леонтьева Марина Игоревна', department: 'Маркетинг', currentCr: 1.1, recommendedCr: 1.15, status: 'Есть отклонения', comments: 1},
+    {id: 8, employeeFullName: 'Машков Олег Сергеевич', department: 'Продажи', currentCr: 0.99, recommendedCr: 1.03, status: 'Черновик', comments: 0},
+    {id: 9, employeeFullName: 'Алексеева Ирина Павловна', department: 'Мобильная разработка', currentCr: 1.03, recommendedCr: 1.08, status: 'На согласовании', comments: 2},
+    {id: 10, employeeFullName: 'Белов Максим Андреевич', department: 'Аналитика', currentCr: 0.94, recommendedCr: 1, status: 'Без отклонений', comments: 0},
+    {id: 11, employeeFullName: 'Голубева Елена Романовна', department: 'Клиентский сервис', currentCr: 1.06, recommendedCr: 1.12, status: 'Есть отклонения', comments: 3},
+    {id: 12, employeeFullName: 'Демидов Кирилл Олегович', department: 'Инфраструктура', currentCr: 1.09, recommendedCr: 1.11, status: 'На согласовании', comments: 1},
+    {id: 13, employeeFullName: 'Егорова Светлана Викторовна', department: 'Комплаенс', currentCr: 0.98, recommendedCr: 1.04, status: 'Черновик', comments: 0},
+    {id: 14, employeeFullName: 'Жуков Антон Михайлович', department: 'Data Platform', currentCr: 1.13, recommendedCr: 1.18, status: 'Есть отклонения', comments: 5},
+    {id: 15, employeeFullName: 'Зайцева Ольга Николаевна', department: 'Подбор персонала', currentCr: 0.93, recommendedCr: 0.99, status: 'Без отклонений', comments: 0},
+    {id: 16, employeeFullName: 'Ильин Роман Денисович', department: 'Архитектура', currentCr: 1.15, recommendedCr: 1.2, status: 'На согласовании', comments: 2},
+    {id: 17, employeeFullName: 'Крылова Дарья Ильинична', department: 'Дизайн-система', currentCr: 1.02, recommendedCr: 1.07, status: 'Есть отклонения', comments: 4},
+    {id: 18, employeeFullName: 'Ларионов Павел Аркадьевич', department: 'Бэк-офис', currentCr: 0.97, recommendedCr: 1.01, status: 'Черновик', comments: 0},
+    {id: 19, employeeFullName: 'Мельникова Наталья Юрьевна', department: 'Обучение и развитие', currentCr: 1, recommendedCr: 1.06, status: 'На согласовании', comments: 1},
+    {id: 20, employeeFullName: 'Никитин Сергей Валерьевич', department: 'Антифрод', currentCr: 1.11, recommendedCr: 1.16, status: 'Есть отклонения', comments: 3},
+    {id: 21, employeeFullName: 'Орлова Виктория Андреевна', department: 'Корпоративные продукты', currentCr: 1.05, recommendedCr: 1.09, status: 'Без отклонений', comments: 0},
+    {id: 22, employeeFullName: 'Пахомов Алексей Игоревич', department: 'DevOps', currentCr: 1.07, recommendedCr: 1.13, status: 'На согласовании', comments: 2},
+    {id: 23, employeeFullName: 'Романова Ксения Олеговна', department: 'Юридический департамент', currentCr: 0.95, recommendedCr: 1.02, status: 'Черновик', comments: 0},
+    {id: 24, employeeFullName: 'Соколов Денис Владимирович', department: 'Платежные сервисы', currentCr: 1.14, recommendedCr: 1.19, status: 'Есть отклонения', comments: 6},
+];

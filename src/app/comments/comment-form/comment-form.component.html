@@ -1,0 +1,32 @@
+<footer class="comment-form">
+    <label class="textarea-label">
+        Комментарий
+        <textarea
+            maxlength="2000"
+            placeholder="Напишите комментарий"
+            [attr.aria-label]="'Комментарий для ' + proposal().employeeFullName"
+            [(ngModel)]="comment"
+        ></textarea>
+        <span>{{ comment.length }}/2000</span>
+    </label>
+
+    <div class="form-actions">
+        <label
+            class="checkbox-anchor"
+            [tourAnchor]="commentTour ? anchors.justification : ''"
+        >
+            <input type="checkbox" [(ngModel)]="isJustification" />
+            <span>Учитывать как обоснование</span>
+            <tui-icon icon="@tui.circle-help" />
+        </label>
+
+        <div class="buttons">
+            <button appearance="flat" size="m" tuiButton type="button" (click)="cancel()">
+                Отмена
+            </button>
+            <button size="m" tuiButton type="button" (click)="submit()">
+                Отправить
+            </button>
+        </div>
+    </div>
+</footer>

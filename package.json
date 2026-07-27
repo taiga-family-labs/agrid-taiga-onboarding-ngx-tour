@@ -1,0 +1,42 @@
+{
+  "name": "agrid-taiga-onboarding-ngx-tour",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "ng serve",
+    "build": "ng build",
+    "build:pages": "ng build --configuration production --base-href /agrid-taiga-onboarding-ngx-tour/",
+    "watch": "ng build --watch --configuration development"
+  },
+  "dependencies": {
+    "@angular/animations": "19.2.6",
+    "@angular/cdk": "19.2.6",
+    "@angular/common": "19.2.6",
+    "@angular/compiler": "19.2.6",
+    "@angular/core": "19.2.6",
+    "@angular/forms": "19.2.6",
+    "@angular/platform-browser": "19.2.6",
+    "@angular/platform-browser-dynamic": "19.2.6",
+    "@angular/router": "19.2.6",
+    "@ng-web-apis/common": "4.14.0",
+    "@taiga-ui/cdk": "4.69.0",
+    "@taiga-ui/core": "4.69.0",
+    "@taiga-ui/event-plugins": "4.7.0",
+    "@taiga-ui/icons": "4.69.0",
+    "@taiga-ui/kit": "4.69.0",
+    "@taiga-ui/styles": "4.69.0",
+    "ag-grid-angular": "34.2.0",
+    "ag-grid-community": "34.2.0",
+    "ngx-ui-tour-tui-hint": "8.0.0",
+    "rxjs": "7.8.2",
+    "tslib": "2.8.1",
+    "zone.js": "0.15.0"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "19.2.6",
+    "@angular/cli": "19.2.6",
+    "@angular/compiler-cli": "19.2.6",
+    "less": "4.2.2",
+    "typescript": "5.8.3"
+  }
+}

@@ -1,0 +1,14 @@
+<div class="employee-cell">
+    <span class="name">{{ proposal.employeeFullName }}</span>
+
+    <button
+        appearance="flat"
+        [attr.aria-label]="'Открыть комментарии: ' + proposal.employeeFullName"
+        [tourAnchor]="commentTour?.isTarget(proposal) ? anchors.trigger : ''"
+        iconStart="@tui.message-square"
+        size="xs"
+        tuiIconButton
+        type="button"
+        (click)="sidebar.open(proposal)"
+    ></button>
+</div>
