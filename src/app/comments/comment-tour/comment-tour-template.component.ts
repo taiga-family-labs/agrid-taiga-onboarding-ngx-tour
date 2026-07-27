@@ -109,21 +109,27 @@ import {COMMENT_TOUR_STEPS} from './comment-tour.service';
             display: grid;
             gap: 1rem;
             min-inline-size: 0;
-            padding: 0.25rem;
+            color: var(--tui-text-primary-on-accent-1);
+            white-space: normal;
         }
 
         .close {
             position: absolute;
             z-index: 1;
-            inset-block-start: -0.25rem;
-            inset-inline-end: -0.25rem;
+            inset-block-start: 0;
+            inset-inline-end: 0;
 
             --tui-text-action: #b5d2ff;
             --tui-text-action-hover: #d8e7ff;
         }
 
         h3 {
-            padding-inline-end: 2rem;
+            padding-inline-end: 2.5rem;
+            color: var(--tui-text-primary-on-accent-1);
+        }
+
+        h3 [tuiSubtitle] {
+            color: inherit;
         }
 
         .preview {
@@ -199,12 +205,13 @@ import {COMMENT_TOUR_STEPS} from './comment-tour.service';
             justify-content: space-between;
             gap: 1rem;
             inline-size: 100%;
+            color: var(--tui-text-primary-on-accent-1);
         }
 
         footer [tuiButton] {
             min-inline-size: 5.75rem;
             background: #fff;
-            color: #303744;
+            color: var(--tui-background-accent-1);
         }
 
         footer [tuiButton]:hover {
