@@ -3,3 +3,4 @@
 /.angular
 *.log
 .DS_Store
+.idea
