@@ -3,41 +3,41 @@ import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 import {WA_LOCAL_STORAGE} from '@ng-web-apis/common';
 import {type IStepOption, TourService} from 'ngx-ui-tour-tui-hint';
 
-import {ProposalDto} from '../../proposal.dto';
-import {CommentsSidebarService} from '../comments-sidebar/comments-sidebar.service';
+import {TravelPlanDto} from '../../proposal.dto';
+import {TravelNotesSidebarService} from '../comments-sidebar/comments-sidebar.service';
 
-export const COMMENT_TOUR_ANCHORS = {
-    trigger: 'comment-trigger',
-    tabs: 'comment-tabs',
-    justification: 'comment-justification',
+export const TRAVEL_NOTES_TOUR_ANCHORS = {
+    trigger: 'travel-notes-trigger',
+    tabs: 'travel-notes-tabs',
+    checklist: 'travel-notes-checklist',
 } as const;
 
-export const COMMENT_TOUR_STEPS = {
-    trigger: 'comment-trigger-step',
-    tabs: 'comment-tabs-step',
-    justification: 'comment-justification-step',
+export const TRAVEL_NOTES_TOUR_STEPS = {
+    trigger: 'travel-notes-trigger-step',
+    tabs: 'travel-notes-tabs-step',
+    checklist: 'travel-notes-checklist-step',
 } as const;
 
-const STORAGE_KEY = '@onboarding.comment-triggers.v1';
+const STORAGE_KEY = '@onboarding.travel-notes.v1';
 const MUTED_STATE = 'muted';
 
 const STEPS: IStepOption[] = [
     {
-        stepId: COMMENT_TOUR_STEPS.trigger,
-        anchorId: COMMENT_TOUR_ANCHORS.trigger,
+        stepId: TRAVEL_NOTES_TOUR_STEPS.trigger,
+        anchorId: TRAVEL_NOTES_TOUR_ANCHORS.trigger,
         placement: 'right',
         enableBackdrop: true,
     },
     {
-        stepId: COMMENT_TOUR_STEPS.tabs,
-        anchorId: COMMENT_TOUR_ANCHORS.tabs,
+        stepId: TRAVEL_NOTES_TOUR_STEPS.tabs,
+        anchorId: TRAVEL_NOTES_TOUR_ANCHORS.tabs,
         placement: 'left',
         enableBackdrop: true,
         isAsync: true,
     },
     {
-        stepId: COMMENT_TOUR_STEPS.justification,
-        anchorId: COMMENT_TOUR_ANCHORS.justification,
+        stepId: TRAVEL_NOTES_TOUR_STEPS.checklist,
+        anchorId: TRAVEL_NOTES_TOUR_ANCHORS.checklist,
         placement: 'left',
         enableBackdrop: true,
         isAsync: true,
@@ -45,11 +45,11 @@ const STEPS: IStepOption[] = [
 ];
 
 @Injectable()
-export class CommentTourService {
+export class TravelNotesTourService {
     private readonly localStorage = inject(WA_LOCAL_STORAGE);
-    private readonly sidebar = inject(CommentsSidebarService);
+    private readonly sidebar = inject(TravelNotesSidebarService);
     private readonly tour = inject(TourService);
-    private readonly targetProposal = signal<ProposalDto | null>(null);
+    private readonly targetTravelPlan = signal<TravelPlanDto | null>(null);
 
     public constructor() {
         this.tour.initialize(STEPS, {
@@ -66,16 +66,16 @@ export class CommentTourService {
             .subscribe(() => this.localStorage.setItem(STORAGE_KEY, MUTED_STATE));
     }
 
-    public prepare(proposal: ProposalDto): void {
-        this.targetProposal.set(proposal);
+    public prepare(travelPlan: TravelPlanDto): void {
+        this.targetTravelPlan.set(travelPlan);
     }
 
-    public start(proposal: ProposalDto, ignoreMuted = false): boolean {
+    public start(travelPlan: TravelPlanDto, ignoreMuted = false): boolean {
         if (!ignoreMuted && this.localStorage.getItem(STORAGE_KEY) === MUTED_STATE) {
             return false;
         }
 
-        this.targetProposal.set(proposal);
+        this.targetTravelPlan.set(travelPlan);
 
         if (this.tour.currentStep) {
             this.tour.end();
@@ -86,16 +86,16 @@ export class CommentTourService {
         return true;
     }
 
-    public isTarget(proposal: ProposalDto): boolean {
-        return this.targetProposal()?.id === proposal.id;
+    public isTarget(travelPlan: TravelPlanDto): boolean {
+        return this.targetTravelPlan()?.id === travelPlan.id;
     }
 
     public next(): void {
-        if (this.tour.currentStep?.stepId === COMMENT_TOUR_STEPS.trigger) {
-            const proposal = this.targetProposal();
+        if (this.tour.currentStep?.stepId === TRAVEL_NOTES_TOUR_STEPS.trigger) {
+            const travelPlan = this.targetTravelPlan();
 
-            if (proposal) {
-                this.sidebar.open(proposal);
+            if (travelPlan) {
+                this.sidebar.open(travelPlan);
             }
         }
 

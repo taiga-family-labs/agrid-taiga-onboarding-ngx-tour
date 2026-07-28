@@ -1,6 +1,6 @@
 <aside class="sidebar">
     <header class="header">
-        <h2>Комментарии</h2>
+        <h2>Заметки о маршруте</h2>
 
         <button
             appearance="flat"
@@ -14,24 +14,27 @@
     </header>
 
     <div class="proposal-summary">
-        <span class="avatar">{{ proposal().employeeFullName.slice(0, 1) }}</span>
-        <strong>{{ proposal().employeeFullName }}</strong>
+        <span class="avatar">{{ travelPlan().title.slice(0, 1) }}</span>
+        <div>
+            <strong>{{ travelPlan().title }}</strong>
+            <div>{{ travelPlan().country }}</div>
+        </div>
     </div>
 
     <tui-segmented
         size="m"
-        [tourAnchor]="commentTour ? anchors.tabs : ''"
+        [tourAnchor]="travelNotesTour ? anchors.tabs : ''"
         [(activeItemIndex)]="activeSegment"
     >
         <button type="button">Все</button>
-        <button type="button">Обоснования</button>
-        <button type="button">Другие комментарии</button>
+        <button type="button">Подготовка</button>
+        <button type="button">Впечатления</button>
     </tui-segmented>
 
     <section class="comments-empty">
         <div class="empty-icon">✦</div>
-        <p>Комментариев по сотруднику пока нет</p>
+        <p>Заметок для этого маршрута пока нет</p>
     </section>
 
-    <comment-form [proposal]="proposal()" />
+    <travel-note-form [travelPlan]="travelPlan()" />
 </aside>

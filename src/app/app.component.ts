@@ -11,15 +11,15 @@ import {
 import {TourService, TourTuiHintModule} from 'ngx-ui-tour-tui-hint';
 
 import {
-    COMMENT_TOUR,
-    provideCommentTour,
+    provideTravelNotesTour,
+    TRAVEL_NOTES_TOUR,
 } from './comments/comment-tour/comment-tour.provider';
-import {CommentTourTemplateComponent} from './comments/comment-tour/comment-tour-template.component';
-import {CommentsSidebarComponent} from './comments/comments-sidebar/comments-sidebar.component';
-import {CommentsSidebarService} from './comments/comments-sidebar/comments-sidebar.service';
-import {PROPOSALS} from './data/proposals';
-import {EmployeeCellComponent} from './grid/employee-cell.component';
-import {ProposalDto} from './proposal.dto';
+import {TravelNotesTourTemplateComponent} from './comments/comment-tour/comment-tour-template.component';
+import {TravelNotesSidebarComponent} from './comments/comments-sidebar/comments-sidebar.component';
+import {TravelNotesSidebarService} from './comments/comments-sidebar/comments-sidebar.service';
+import {TRAVEL_PLANS} from './data/proposals';
+import {TravelPlanCellComponent} from './grid/employee-cell.component';
+import {TravelPlanDto} from './proposal.dto';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -27,24 +27,24 @@ ModuleRegistry.registerModules([AllCommunityModule]);
     selector: 'onboarding-demo',
     imports: [
         AgGridAngular,
-        CommentTourTemplateComponent,
-        CommentsSidebarComponent,
+        TravelNotesTourTemplateComponent,
+        TravelNotesSidebarComponent,
         TourTuiHintModule,
         TuiButton,
         TuiRoot,
         TuiTitle,
     ],
-    providers: [provideCommentTour(), CommentsSidebarService],
+    providers: [provideTravelNotesTour(), TravelNotesSidebarService],
     templateUrl: './app.component.html',
     styleUrl: './app.component.less',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
-    protected readonly commentTour = inject(COMMENT_TOUR);
-    protected readonly sidebar = inject(CommentsSidebarService);
-    protected readonly rowData = PROPOSALS;
+    protected readonly travelNotesTour = inject(TRAVEL_NOTES_TOUR);
+    protected readonly sidebar = inject(TravelNotesSidebarService);
+    protected readonly rowData = TRAVEL_PLANS;
 
-    protected readonly defaultColDef: ColDef<ProposalDto> = {
+    protected readonly defaultColDef: ColDef<TravelPlanDto> = {
         sortable: true,
         filter: true,
         resizable: true,
@@ -52,34 +52,34 @@ export class AppComponent {
         minWidth: 140,
     };
 
-    protected readonly columnDefs: ColDef<ProposalDto>[] = [
+    protected readonly columnDefs: ColDef<TravelPlanDto>[] = [
         {
-            colId: 'employeeFullName',
-            field: 'employeeFullName',
-            headerName: 'Сотрудник',
-            cellRenderer: EmployeeCellComponent,
-            minWidth: 320,
+            colId: 'title',
+            field: 'title',
+            headerName: 'Маршрут',
+            cellRenderer: TravelPlanCellComponent,
+            minWidth: 300,
             flex: 1.5,
         },
-        {field: 'department', headerName: 'Подразделение', minWidth: 210},
-        {field: 'currentCr', headerName: 'Текущий CR', minWidth: 130},
-        {field: 'recommendedCr', headerName: 'Новый CR', minWidth: 130},
-        {field: 'status', headerName: 'Статус', minWidth: 180},
+        {field: 'country', headerName: 'Страна', minWidth: 190},
+        {field: 'season', headerName: 'Сезон', minWidth: 130},
+        {field: 'durationDays', headerName: 'Дней', minWidth: 110},
+        {field: 'status', headerName: 'Статус', minWidth: 170},
     ];
 
     private readonly tour = inject(TourService);
-    private gridApi: GridApi<ProposalDto> | null = null;
+    private gridApi: GridApi<TravelPlanDto> | null = null;
     private autoStartAttempted = false;
 
     public constructor() {
-        const proposal = this.rowData[0];
+        const travelPlan = this.rowData[0];
 
-        if (proposal) {
-            this.commentTour?.prepare(proposal);
+        if (travelPlan) {
+            this.travelNotesTour?.prepare(travelPlan);
         }
     }
 
-    protected onGridReady(event: GridReadyEvent<ProposalDto>): void {
+    protected onGridReady(event: GridReadyEvent<TravelPlanDto>): void {
         this.gridApi = event.api;
     }
 
@@ -93,16 +93,16 @@ export class AppComponent {
     }
 
     protected startTour(ignoreMuted = false): void {
-        const proposal = this.rowData[0];
+        const travelPlan = this.rowData[0];
 
-        if (!proposal || !this.commentTour?.start(proposal, ignoreMuted)) {
+        if (!travelPlan || !this.travelNotesTour?.start(travelPlan, ignoreMuted)) {
             return;
         }
 
         this.sidebar.close();
-        this.gridApi?.ensureColumnVisible('employeeFullName');
+        this.gridApi?.ensureColumnVisible('title');
         this.gridApi?.forEachNode((node) => {
-            if (node.data?.id === proposal.id) {
+            if (node.data?.id === travelPlan.id) {
                 this.gridApi?.ensureNodeVisible(node, 'middle');
             }
         });

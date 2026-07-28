@@ -1,17 +1,17 @@
 import {computed, Injectable, signal} from '@angular/core';
 
-import {ProposalDto} from '../../proposal.dto';
+import {TravelPlanDto} from '../../proposal.dto';
 
 @Injectable()
-export class CommentsSidebarService {
-    public readonly proposal = signal<ProposalDto | null>(null);
-    public readonly opened = computed(() => this.proposal() !== null);
+export class TravelNotesSidebarService {
+    public readonly travelPlan = signal<TravelPlanDto | null>(null);
+    public readonly opened = computed(() => this.travelPlan() !== null);
 
-    public open(proposal: ProposalDto): void {
-        this.proposal.set(proposal);
+    public open(travelPlan: TravelPlanDto): void {
+        this.travelPlan.set(travelPlan);
     }
 
     public close(): void {
-        this.proposal.set(null);
+        this.travelPlan.set(null);
     }
 }
