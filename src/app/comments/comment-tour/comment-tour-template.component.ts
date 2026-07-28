@@ -2,11 +2,11 @@ import {ChangeDetectionStrategy, Component, inject, input} from '@angular/core';
 import {TuiButton, TuiTitle} from '@taiga-ui/core';
 import {type IStepOption, TourService} from 'ngx-ui-tour-tui-hint';
 
-import {COMMENT_TOUR} from './comment-tour.provider';
-import {COMMENT_TOUR_STEPS} from './comment-tour.service';
+import {TRAVEL_NOTES_TOUR} from './comment-tour.provider';
+import {TRAVEL_NOTES_TOUR_STEPS} from './comment-tour.service';
 
 @Component({
-    selector: 'comment-tour-template',
+    selector: 'travel-notes-tour-template',
     imports: [TuiButton, TuiTitle],
     template: `
         <article class="step">
@@ -24,48 +24,48 @@ import {COMMENT_TOUR_STEPS} from './comment-tour.service';
             @switch (step().stepId) {
                 @case (steps.trigger) {
                     <h3 tuiTitle>
-                        Обоснования переехали
-                        <span tuiSubtitle>По иконке комментария теперь можно увидеть и отклонения по заявке</span>
+                        Заметки прямо из таблицы
+                        <span tuiSubtitle>У каждого маршрута есть отдельная панель для идей и деталей поездки</span>
                     </h3>
 
                     <div class="preview rows-preview">
-                        @for (name of names; track name; let index = $index) {
+                        @for (route of routes; track route; let index = $index) {
                             <div class="row">
-                                <span>{{ name }}</span>
-                                <span class="comment" [class.warning]="index === 2">●</span>
+                                <span>{{ route }}</span>
+                                <span class="note" [class.active]="index === 0">●</span>
                             </div>
                         }
                     </div>
                 }
                 @case (steps.tabs) {
                     <h3 tuiTitle>
-                        Все комментарии в одном месте
-                        <span tuiSubtitle>Комментарии, отклонения и обоснования теперь будут находиться здесь</span>
+                        Разделяйте заметки по смыслу
+                        <span tuiSubtitle>Переключайтесь между подготовкой к поездке и впечатлениями после нее</span>
                     </h3>
 
                     <div class="preview tabs-preview">
                         <div class="segments">
                             <span>Все</span>
-                            <span>Обоснования</span>
-                            <span>Другие комментарии</span>
+                            <span>Подготовка</span>
+                            <span>Впечатления</span>
                         </div>
 
                         <div class="panel">
-                            <strong>Отклонения от правил в заявке</strong>
-                            <span>• Превышение рекомендаций</span>
-                            <span>• Новый CR выше текущего</span>
+                            <strong>Подготовка к маршруту</strong>
+                            <span>• Проверить расписание поездов</span>
+                            <span>• Сохранить адрес отеля</span>
                         </div>
                     </div>
                 }
-                @case (steps.justification) {
+                @case (steps.checklist) {
                     <h3 tuiTitle>
-                        Комментарий как обоснование
-                        <span tuiSubtitle>Если по заявке есть отклонения от правил, комментарий может учитываться как обоснование</span>
+                        Добавляйте важное в чек-лист
+                        <span tuiSubtitle>Отметьте заметку, если ее нужно выполнить до начала поездки</span>
                     </h3>
 
-                    <div class="preview justification-preview">
+                    <div class="preview checklist-preview">
                         <span class="checkbox"></span>
-                        <span>Учитывать как обоснование</span>
+                        <span>Добавить в чек-лист</span>
                     </div>
                 }
             }
@@ -150,16 +150,16 @@ import {COMMENT_TOUR_STEPS} from './comment-tour.service';
             font-size: 0.75rem;
         }
 
-        .comment {
+        .note {
             color: #8a929c;
         }
 
-        .warning {
-            color: #e5484d;
+        .active {
+            color: #4584e6;
         }
 
         .tabs-preview,
-        .justification-preview {
+        .checklist-preview {
             min-block-size: 8.75rem;
         }
 
@@ -186,7 +186,7 @@ import {COMMENT_TOUR_STEPS} from './comment-tour.service';
             font-size: 0.7rem;
         }
 
-        .justification-preview {
+        .checklist-preview {
             display: flex;
             align-items: center;
             gap: 0.75rem;
@@ -221,15 +221,15 @@ import {COMMENT_TOUR_STEPS} from './comment-tour.service';
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CommentTourTemplateComponent {
+export class TravelNotesTourTemplateComponent {
     protected readonly tour = inject(TourService);
-    protected readonly commentTour = inject(COMMENT_TOUR);
-    protected readonly steps = COMMENT_TOUR_STEPS;
-    protected readonly names = [
-        'Анна Агафонова',
-        'Николай Арсеньев',
-        'Олег Володин',
-        'Татьяна Воробьева',
+    protected readonly travelNotesTour = inject(TRAVEL_NOTES_TOUR);
+    protected readonly steps = TRAVEL_NOTES_TOUR_STEPS;
+    protected readonly routes = [
+        'Киото и Нара',
+        'Лиссабон и Синтра',
+        'Таллин и острова',
+        'Рим и Флоренция',
     ];
 
     public readonly step = input.required<IStepOption>();
@@ -239,6 +239,6 @@ export class CommentTourTemplateComponent {
     }
 
     protected next(): void {
-        this.commentTour?.next();
+        this.travelNotesTour?.next();
     }
 }
