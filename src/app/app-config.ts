@@ -2,7 +2,7 @@ import {InjectionToken, type Provider} from '@angular/core';
 
 export interface Configuration {
     readonly features?: {
-        readonly enableTriggersUiImprovement?: boolean;
+        readonly enableOnboarding?: boolean;
     };
 }
 
