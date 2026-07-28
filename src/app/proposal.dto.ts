@@ -1,9 +1,9 @@
-export interface ProposalDto {
+export interface TravelPlanDto {
     readonly id: number;
-    readonly employeeFullName: string;
-    readonly department: string;
-    readonly currentCr: number;
-    readonly recommendedCr: number;
+    readonly title: string;
+    readonly country: string;
+    readonly season: string;
+    readonly durationDays: number;
     readonly status: string;
-    readonly comments: number;
+    readonly notesCount: number;
 }
