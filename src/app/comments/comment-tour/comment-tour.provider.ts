@@ -1,20 +1,20 @@
 import {inject, InjectionToken, type Provider} from '@angular/core';
 
 import {APP_CONFIG} from '../../app-config';
-import {CommentTourService} from './comment-tour.service';
+import {TravelNotesTourService} from './comment-tour.service';
 
-export const COMMENT_TOUR = new InjectionToken<CommentTourService | null>(
-    '[COMMENT_TOUR]: CommentTourService',
+export const TRAVEL_NOTES_TOUR = new InjectionToken<TravelNotesTourService | null>(
+    '[TRAVEL_NOTES_TOUR]: TravelNotesTourService',
 );
 
-export function provideCommentTour(): Provider {
+export function provideTravelNotesTour(): Provider {
     return [
-        CommentTourService,
+        TravelNotesTourService,
         {
-            provide: COMMENT_TOUR,
+            provide: TRAVEL_NOTES_TOUR,
             useFactory: () =>
-                inject(APP_CONFIG).features?.enableTriggersUiImprovement
-                    ? inject(CommentTourService)
+                inject(APP_CONFIG).features?.enableOnboarding
+                    ? inject(TravelNotesTourService)
                     : null,
         },
     ];
