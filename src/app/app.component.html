@@ -3,8 +3,8 @@
         <header class="toolbar">
             <div>
                 <h1 tuiTitle>
-                    Пересмотр компенсаций
-                    <span tuiSubtitle>Прототип AG Grid + Taiga UI на ngx-ui-tour</span>
+                    Планировщик путешествий
+                    <span tuiSubtitle>Учебный прототип AG Grid + Taiga UI на ngx-ui-tour</span>
                 </h1>
             </div>
 
@@ -13,7 +13,7 @@
                 size="m"
                 tuiButton
                 type="button"
-                [disabled]="commentTour === null"
+                [disabled]="travelNotesTour === null"
                 (click)="startTour(true)"
             >
                 Запустить онбординг
@@ -24,7 +24,7 @@
             <section class="grid-shell">
                 <div class="grid-toolbar">
                     <span>Перетащите сюда для группировки по строкам</span>
-                    <span>{{ rowData.length }} заявок</span>
+                    <span>{{ rowData.length }} маршрутов</span>
                 </div>
 
                 <ag-grid-angular
@@ -39,19 +39,19 @@
                 />
             </section>
 
-            @if (sidebar.proposal(); as proposal) {
-                <comments-sidebar
-                    [proposal]="proposal"
+            @if (sidebar.travelPlan(); as travelPlan) {
+                <travel-notes-sidebar
+                    [travelPlan]="travelPlan"
                     (closed)="closeSidebar()"
                 />
             }
         </div>
     </main>
 
-    @if (commentTour) {
+    @if (travelNotesTour) {
         <tour-step-template>
             <ng-template let-step="step">
-                <comment-tour-template [step]="step" />
+                <travel-notes-tour-template [step]="step" />
             </ng-template>
         </tour-step-template>
     }
